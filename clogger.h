@@ -41,11 +41,11 @@
 #endif
 
 #if CLOGGER_LEVEL < 2
-#define LOG_DEBUG(fmt, ...) { fprintf(stderr, ""); }
+#define LOG_DEBUG(fmt, ...) { (void)(fmt); }
 #endif
 
 #if CLOGGER_LEVEL < 1
-#define LOG_INFO(fmt, ...) { fprintf(stderr, ""); }
+#define LOG_INFO(fmt, ...) { (void)(fmt); }
 #endif
 
 // STDOUT
