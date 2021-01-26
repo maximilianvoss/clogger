@@ -41,11 +41,11 @@
 #endif
 
 #if CLOGGER_LEVEL < 2
-#define LOG_DEBUG
+#define LOG_DEBUG(fmt, ...)
 #endif
 
 #if CLOGGER_LEVEL < 1
-#define LOG_INFO
+#define LOG_INFO(fmt, ...)
 #endif
 
 // STDOUT
