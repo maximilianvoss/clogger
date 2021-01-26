@@ -107,15 +107,15 @@
 #include <SDL_log.h>
 
 #ifndef LOG_DEBUG
-#define LOG_DEBUG(fmt, ...) { SDL_LogDebug(abc, fmt, ##__VA_ARGS__); }
+#define LOG_DEBUG(fmt, ...) { SDL_LogDebug(SDL_LOG_CATEGORY_TEST, fmt, ##__VA_ARGS__); }
 #endif
 
 #ifndef LOG_INFO
-#define LOG_INFO(fmt, ...) { SDL_LogInfo(abc, fmt, ##__VA_ARGS__); }
+#define LOG_INFO(fmt, ...) { SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, fmt, ##__VA_ARGS__); }
 #endif
 
 #ifndef LOG_ERROR
-#define LOG_ERROR(fmt, ...) { SDL_LogDebug(abc, fmt, ##__VA_ARGS__); }
+#define LOG_ERROR(fmt, ...) { SDL_LogDebug(SDL_LOG_CATEGORY_ERROR, fmt, ##__VA_ARGS__); }
 #endif
 #endif // SDL
 
