@@ -34,6 +34,7 @@
 // 0 = ERROR
 // 1 = INFO
 // 2 = DEBUG
+// 3 = TRACE
 // Fallback if no log level is defined is ERROR
 
 #ifndef CLOGGER_LEVEL
