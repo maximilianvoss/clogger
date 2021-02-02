@@ -40,6 +40,10 @@
 #define CLOGGER_LEVEL 0
 #endif
 
+#if CLOGGER_LEVEL < 3
+#define LOG_TRACE(fmt, ...) { (void)(fmt); }
+#endif
+
 #if CLOGGER_LEVEL < 2
 #define LOG_DEBUG(fmt, ...) { (void)(fmt); }
 #endif
@@ -50,6 +54,10 @@
 
 // STDOUT
 #ifdef CLOGGER_STDOUT
+#ifndef LOG_TRACE
+#define LOG_TRACE(fmt, ...) { printf("\nTRACE: "); printf(fmt, ##__VA_ARGS__);}
+#endif
+
 #ifndef LOG_DEBUG
 #define LOG_DEBUG(fmt, ...) { printf("\nDEBUG: "); printf(fmt, ##__VA_ARGS__);}
 #endif
@@ -64,6 +72,10 @@
 #endif // STDOUT
 
 #ifdef CLOGGER_STDERR // STDERR
+#ifndef LOG_TRACE
+#define LOG_TRACE(fmt, ...) { printf("\nTRACE: "); fprintf(stderr, fmt, ##__VA_ARGS__);}
+#endif
+
 #ifndef LOG_DEBUG
 #define LOG_DEBUG(fmt, ...) { fprintf(stderr, "\nDEBUG: "); fprintf(stderr, fmt, ##__VA_ARGS__);}
 #endif
@@ -88,6 +100,14 @@
 #define CLOGGER_LOGFILEDESC_INFO
 #endif
 
+#ifndef CLOGGER_LOGFILEDESC_TRACE
+#define CLOGGER_LOGFILEDESC_DEBUG
+#endif
+
+#ifndef LOG_TRACE
+#define LOG_TRACE(fmt, ...) { fprintf(CLOGGER_LOGFILEDESC_TRACE, fmt, ##__VA_ARGS__);}
+#endif
+
 #ifndef LOG_DEBUG
 #define LOG_DEBUG(fmt, ...) { fprintf(CLOGGER_LOGFILEDESC_DEBUG, fmt, ##__VA_ARGS__);}
 #endif
@@ -105,6 +125,10 @@
 
 #ifdef CLOGGER_SDL // SDL
 #include <SDL_log.h>
+
+#ifndef LOG_TRACE
+#define LOG_TRACE(fmt, ...) { SDL_LogDebug(SDL_LOG_CATEGORY_CUSTOM, fmt, ##__VA_ARGS__);
+#endif
 
 #ifndef LOG_DEBUG
 #define LOG_DEBUG(fmt, ...) { SDL_LogDebug(SDL_LOG_CATEGORY_TEST, fmt, ##__VA_ARGS__); }
